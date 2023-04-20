@@ -13,11 +13,9 @@ import Foundation
 import AllocData
 
 extension MSourceMeta.Key: Comparable {
-    
     public static func < (lhs: MSourceMeta.Key, rhs: MSourceMeta.Key) -> Bool {
         if lhs.sourceMetaNormID < rhs.sourceMetaNormID { return true }
         if lhs.sourceMetaNormID > rhs.sourceMetaNormID { return false }
         return false
     }
 }
-

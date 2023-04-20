@@ -15,7 +15,7 @@ import XCTest
 
 class FloatingPointTests: XCTestCase {
     func testNinetyNinePointNine() {
-        let sum: Double = 0.999 // 99.9%
+        let sum = 0.999 // 99.9%
 
         // starting from least accurate to greater accuracy
         XCTAssertTrue(sum.isEqual(to: 1.000, accuracy: 0.0100)) // 1.00%
@@ -161,7 +161,7 @@ class FloatingPointTests: XCTestCase {
         XCTAssertEqual(0.9990, 0.9990.coerceIfEqual(to: 1, accuracy: epsilon), accuracy: testEpsilon) //  99.90%
         XCTAssertEqual(0.9989, 0.9989.coerceIfEqual(to: 1, accuracy: epsilon), accuracy: testEpsilon) //  99.89%
     }
-    
+
     func testIsEqualToZero() {
         let epsilon = 0.001 // 0.01% accuracy (99.91% .. 100.10% valid)
 
@@ -172,5 +172,4 @@ class FloatingPointTests: XCTestCase {
         XCTAssertTrue((-0.0009).isEqualToZero(accuracy: epsilon))
         XCTAssertFalse((-0.0010).isEqualToZero(accuracy: epsilon))
     }
-
 }

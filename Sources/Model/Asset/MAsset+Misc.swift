@@ -51,7 +51,6 @@ public extension MAsset {
 }
 
 public extension MAsset {
-    
     static let cashAssetID = "Cash"
     static let cashAssetKey = MAsset.Key(assetID: cashAssetID)
 

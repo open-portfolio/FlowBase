@@ -16,7 +16,7 @@ extension MValuationPosition: Comparable {
     public static func < (lhs: MValuationPosition, rhs: MValuationPosition) -> Bool {
         if lhs.primaryKey < rhs.primaryKey { return true }
         if lhs.primaryKey > rhs.primaryKey { return false }
-        
+
         if lhs.marketValue < rhs.marketValue { return true }
         if lhs.marketValue > rhs.marketValue { return false }
 
@@ -25,7 +25,6 @@ extension MValuationPosition: Comparable {
 }
 
 extension MValuationPosition.Key: Comparable {
-    
     public static func < (lhs: MValuationPosition.Key, rhs: MValuationPosition.Key) -> Bool {
         if lhs.snapshotNormID < rhs.snapshotNormID { return true }
         if lhs.snapshotNormID > rhs.snapshotNormID { return false }
@@ -38,5 +37,4 @@ extension MValuationPosition.Key: Comparable {
 
         return false
     }
-
 }

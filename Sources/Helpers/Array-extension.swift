@@ -42,7 +42,6 @@ private func between<T>(x: T, _ ys: [T]) -> [[T]] {
 }
 
 public extension Array where Element: Hashable {
-    
     @inlinable
     var isUnique: Bool {
         var seen = Set<Element>()
@@ -52,7 +51,6 @@ public extension Array where Element: Hashable {
 
 // via https://stackoverflow.com/posts/51683055/revisions
 public extension Array where Element: Equatable {
-    
     @inlinable
     func reorder(by preferredOrder: [Element]) -> [Element] {
         sorted { a, b -> Bool in
@@ -70,14 +68,13 @@ public extension Array where Element: Equatable {
 }
 
 public extension Array {
-
     // Safely lookup an index that might be out of bounds,
     // returning nil if it does not exist
     @inlinable
     func item(at index: Int, default: Element? = nil) -> Element? {
         indices.contains(index) ? self[index] : `default`
     }
-    
+
     @inlinable
     func item(at index: Int, default: Element) -> Element {
         indices.contains(index) ? self[index] : `default`

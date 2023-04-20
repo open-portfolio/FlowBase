@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MAccount: FlowTabular {
     public var strategyKey: MStrategy.Key {
         MStrategy.Key(strategyID: strategyID)

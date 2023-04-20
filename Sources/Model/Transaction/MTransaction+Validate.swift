@@ -12,16 +12,15 @@ import Foundation
 
 import AllocData
 
-extension MTransaction.Key {
+public extension MTransaction.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
+    var isValid: Bool {
         // ignore security and lotID, which can be blank
-        self.accountNormID != ""
+        accountNormID != ""
     }
 }
 
 extension MTransaction: BaseValidator {
-    
     public var isSharePriceValid: Bool {
         guard let _sharePrice = sharePrice,
               _sharePrice > 0
@@ -30,8 +29,7 @@ extension MTransaction: BaseValidator {
     }
 
     // NOTE validation for import, but not for creating snapshots (where share price is needed)
-    public func validate(epsilon: Double = 0.0001) throws {
-        
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for transaction: [\(primaryKey)].")
         }
@@ -44,14 +42,13 @@ extension MTransaction: BaseValidator {
     }
 
     public func validate(against model: BaseModel, isNew: Bool) throws {
-        
         if isNew {
             guard !model.containsKey(primaryKey, keyPath: \.transactions)
             else {
                 throw FlowBaseError.validationFailure("Conflicting transactions '\(accountID)' and '\(securityID)'.")
             }
         }
-        
+
         // Foreign Key validation
         // ignoring, as it's okay to have invalid FKs in transactions (no cascade too)
     }

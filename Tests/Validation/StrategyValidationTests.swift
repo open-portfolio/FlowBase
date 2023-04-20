@@ -21,28 +21,28 @@ class StrategyValidationTests: XCTestCase {
         let expected = MStrategy.Key(strategyID: "a b c")
         XCTAssertEqual(expected, actual)
     }
-    
+
     func testTolerateMissingTitle() throws {
         let strategy = MStrategy(strategyID: "1", title: "  \n ")
         XCTAssertNoThrow(try strategy.validate())
     }
-    
+
     func testMissingIDFails() throws {
         let expected = "Invalid primary key for strategy: [StrategyID: '']."
         XCTAssertThrowsError(try MStrategy(strategyID: "  \n ", title: "b").validate()) { error in
             XCTAssertEqual(error as! FlowBaseError, FlowBaseError.validationFailure(expected))
         }
     }
-    
+
     func testConflictingTitlesInModel() throws {
         for isNew in [true, false] {
             var model = BaseModel()
-            
+
             model.strategies = [MStrategy(strategyID: "1", title: "a")]
-            
+
             let A = MStrategy(strategyID: "2", title: "A")
             XCTAssertNoThrow(try A.validate())
-            
+
             let expected = "Conflicting titles 'A'."
             XCTAssertThrowsError(try A.validate(against: model, isNew: isNew)) { error in
                 XCTAssertEqual(error as! FlowBaseError, FlowBaseError.validationFailure(expected))

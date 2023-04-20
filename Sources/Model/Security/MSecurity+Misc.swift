@@ -19,11 +19,10 @@ extension MSecurity.Key: CustomStringConvertible {
 }
 
 public extension MSecurity {
-
     var isCashAsset: Bool {
         assetKey == MAsset.cashAssetKey
     }
-    
+
     func getTitleID(_ assetMap: AssetMap) -> String {
         let suffix: String = {
             let assetKey = self.assetKey
@@ -53,7 +52,7 @@ public extension MSecurity {
               let security = securityMap[securityKey_] else { return nil }
         return security
     }
-    
+
     static func getTickerKeys(for accounts: [MAccount], accountHoldingsMap: AccountHoldingsMap) -> [SecurityKey] {
         MHolding.getHoldings(for: accounts, accountHoldingsMap: accountHoldingsMap).compactMap { $0.securityKey }
     }

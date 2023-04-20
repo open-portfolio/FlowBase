@@ -21,7 +21,7 @@ class SecurityValidationTests: XCTestCase {
         let expected = MSecurity.Key(securityID: "a b c")
         XCTAssertEqual(expected, actual)
     }
-    
+
     func testMissingAssetClassSucceeds() throws {
         for isNew in [true, false] {
             let model = BaseModel()
@@ -30,7 +30,7 @@ class SecurityValidationTests: XCTestCase {
             XCTAssertNoThrow(try security.validate(against: model, isNew: isNew))
         }
     }
-    
+
     func testMissingTickerFails() throws {
         let expected = "Invalid primary key for security: [SecurityID: '']."
         let security = MSecurity(securityID: "  \n ", assetID: "a")

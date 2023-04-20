@@ -13,7 +13,6 @@ import Foundation
 import AllocData
 
 extension MValuationCashflow.Key: Comparable {
-    
     public static func < (lhs: MValuationCashflow.Key, rhs: MValuationCashflow.Key) -> Bool {
         if lhs.transactedAt < rhs.transactedAt { return true }
         if lhs.transactedAt > rhs.transactedAt { return false }
@@ -26,5 +25,4 @@ extension MValuationCashflow.Key: Comparable {
 
         return false
     }
-
 }

@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MSecurity: FlowTabular {
     public var assetKey: MAsset.Key {
         MAsset.Key(assetID: assetID)

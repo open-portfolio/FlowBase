@@ -18,8 +18,8 @@ extension MValuationSnapshot.Key: CustomStringConvertible {
     }
 }
 
-extension MValuationSnapshot.Key {
-    public static var empty: MValuationSnapshot.Key = MValuationSnapshot.Key(snapshotID: "")
+public extension MValuationSnapshot.Key {
+    static var empty: MValuationSnapshot.Key = .init(snapshotID: "")
 }
 
 extension MValuationSnapshot: Titled {
@@ -33,9 +33,8 @@ extension MValuationSnapshot: Titled {
     public var titleID: String {
         title ?? "Unknown Snapshot"
     }
-    
+
     public var title: String? {
         MValuationSnapshot.df.string(from: capturedAt)
     }
 }
-

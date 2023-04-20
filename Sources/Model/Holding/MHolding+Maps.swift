@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 public extension MHolding {
     // obtain a unique list of asset classes for the specified holdings
     static func getAssetKeys(_ holdings: [MHolding], securityMap: SecurityMap) -> [AssetKey] {

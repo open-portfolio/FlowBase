@@ -17,14 +17,13 @@ import FINporter
 @testable import FlowBase
 
 class BaseModelSaveTests: XCTestCase {
-    
     func testAddNew() throws {
         let account = MAccount(accountID: "1", title: "Blah")
         var model = BaseModel(accounts: [])
         let result = BaseModel.saveHelper(&model.accounts, account, originalID: nil)
         XCTAssertTrue(result)
     }
-    
+
     func testAddNewWithConflictFails() throws {
         let account1a = MAccount(accountID: "1", title: "Blah")
         let account1b = MAccount(accountID: "1", title: "Bleh")

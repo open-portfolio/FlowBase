@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MAllocation: FlowTabular {
     public var strategyKey: MStrategy.Key {
         MStrategy.Key(strategyID: strategyID)

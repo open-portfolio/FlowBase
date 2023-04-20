@@ -10,13 +10,12 @@
 
 import XCTest
 
-import FlowBase
 import AllocData
+import FlowBase
 
 @testable import FlowBase
 
 class ForwardSumTests: XCTestCase {
-    
     func testForwardSum() {
         let capacities = [0.13, 0.20, 0.18, 0.02]
 
@@ -40,12 +39,12 @@ class ForwardSumTests: XCTestCase {
 
         XCTAssertEqual(bar4, 0.0)
     }
-    
+
     func testForwardSumDict() {
         let capacities = ["d": 0.13, "c": 0.20, "a": 0.18, "b": 0.02, "e": 0.07]
 
         let order = ["a", "b", "c", "d"]
-        
+
         let bar0 = capacities.forwardSum(order: order, start: 0)
 
         XCTAssertEqual(bar0, 0.18 + 0.02 + 0.20 + 0.13)
@@ -66,12 +65,12 @@ class ForwardSumTests: XCTestCase {
 
         XCTAssertEqual(bar4, 0.0)
     }
-    
+
     func testForwardSumDictMissing() {
         let capacities = ["d": 0.13, "c": 0.20, "a": 0.18, "b": 0.02, "e": 0.07]
 
         let order = ["a", "b", "c", "x", "d"]
-        
+
         let bar0 = capacities.forwardSum(order: order, start: 0)
 
         XCTAssertEqual(bar0, 0.18 + 0.02 + 0.20 + 0.13)
@@ -91,7 +90,7 @@ class ForwardSumTests: XCTestCase {
         let bar4 = capacities.forwardSum(order: order, start: 4)
 
         XCTAssertEqual(bar4, 0.13)
-        
+
         let bar5 = capacities.forwardSum(order: order, start: 5)
 
         XCTAssertEqual(bar5, 0)

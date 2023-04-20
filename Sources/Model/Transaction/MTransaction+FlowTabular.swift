@@ -12,9 +12,7 @@ import Foundation
 
 import AllocData
 
-
 extension MTransaction: FlowTabular {
-    
     public var accountKey: MAccount.Key {
         MAccount.Key(accountID: accountID)
     }
@@ -24,10 +22,9 @@ extension MTransaction: FlowTabular {
     }
 
     public func fkCreate(model: inout BaseModel) throws {
-        
         // NOTE: there's no cascading delete for history records.
         // NOTE: will cause a deleted account/security to keep coming back.
-        
+
         if accountKey.isValid {
             // attempt to find existing record for account, if any specified, creating if needed
             _ = try model.importMinimal(MAccount(accountID: accountID), into: \.accounts)

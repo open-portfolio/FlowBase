@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MStrategy: Comparable {
     public static func < (lhs: MStrategy, rhs: MStrategy) -> Bool {
         lhs._title < rhs._title ||
@@ -25,7 +24,6 @@ extension MStrategy: Comparable {
 }
 
 extension MStrategy.Key: Comparable {
-    
     public static func < (lhs: MStrategy.Key, rhs: MStrategy.Key) -> Bool {
         if lhs.strategyNormID < rhs.strategyNormID { return true }
         if lhs.strategyNormID > rhs.strategyNormID { return false }

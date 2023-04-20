@@ -13,11 +13,10 @@ import Foundation
 import AllocData
 
 public protocol FlowTabular: AllocKeyed {
-    
     typealias RawKeys = [String]
 
     // generate minimal record from a set of required keys
-    //static func createMinimal(primaryKey: Key) throws -> Self
+    // static func createMinimal(primaryKey: Key) throws -> Self
 
     // create any foreign keys as needed, so imports can happen in any order
     func fkCreate(model: inout BaseModel) throws

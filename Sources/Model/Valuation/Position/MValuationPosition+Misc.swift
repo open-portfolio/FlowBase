@@ -22,10 +22,9 @@ extension MValuationPosition: AccountAssetKeyed {
     public var accountAssetKey: AccountAssetKey {
         AccountAssetKey(accountID: accountID, assetID: assetID)
     }
-    
+
     public func getStrategyAssetKey(accountMap: AccountMap) -> StrategyAssetKey? {
         guard let strategyID = accountMap[accountKey]?.strategyID else { return nil }
         return StrategyAssetKey(strategyID: strategyID, assetID: assetID)
     }
 }
-

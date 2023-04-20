@@ -28,7 +28,7 @@ public extension HoldingsSummary {
             if let _shareCount = $1.shareCount {
                 tsm[$1.securityKey, default: 0] += _shareCount
             }
-            
+
             return HoldingsSummary(presentValue: $0.presentValue + pv,
                                    costBasis: $0.costBasis + costBasis_,
                                    count: $0.count + 1,

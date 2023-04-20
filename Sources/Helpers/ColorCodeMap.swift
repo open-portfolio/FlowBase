@@ -12,7 +12,7 @@ import Foundation
 
 import AllocData
 
-public typealias ColorCodeMap = [MAsset.Key: Int]  // AssetKey: Int
+public typealias ColorCodeMap = [MAsset.Key: Int] // AssetKey: Int
 
 public extension MAsset {
     static func getColorCodeMap(_ assets: [MAsset]) -> ColorCodeMap {

@@ -26,7 +26,7 @@ class HoldingValidationTests: XCTestCase {
 
     func testAnyShareCountPermitted() throws {
         for shareCount in [-1000, -1, -0.001, 0, 0.001, 1, 1000] {
-            //let expected = "'\(shareCount.format3())' is not a valid share count for holding."
+            // let expected = "'\(shareCount.format3())' is not a valid share count for holding."
             let holding = MHolding(accountID: "1", securityID: security.securityID, lotID: "", shareCount: shareCount, shareBasis: 1)
             XCTAssertNoThrow(try holding.validate())
         }

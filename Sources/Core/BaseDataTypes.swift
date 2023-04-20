@@ -69,4 +69,3 @@ public typealias TrackerKey = MTracker.Key
 public typealias TrackerMap = AllocKeyMap<MTracker>
 public typealias TransactionKey = MTransaction.Key
 public typealias TransactionMap = AllocKeyMap<MTransaction>
-

@@ -24,20 +24,17 @@ extension MTracker: Comparable {
 }
 
 extension MTracker.Key: Comparable {
-    
     public static func < (lhs: MTracker.Key, rhs: MTracker.Key) -> Bool {
         if lhs.trackerNormID < rhs.trackerNormID { return true }
         if lhs.trackerNormID > rhs.trackerNormID { return false }
         return false
     }
-
 }
 
-
-//extension BaseModel {
-//    
+// extension BaseModel {
+//
 //    /// sort using the provided comparator, with option to use the comparator in reverse
 //    public mutating func sortBy(_ forward: Bool = true, _ comparator: (MTracker, MTracker) -> Bool ) {
 //        sortByField(forward, \.trackers, comparator)
 //    }
-//}
+// }

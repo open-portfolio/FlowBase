@@ -12,31 +12,29 @@ import Foundation
 
 import AllocData
 
-
 public extension BaseModel {
-
     // MARK: - Keys
-    
+
     var accountKeys: [AccountKey] {
-       accounts.map(\.primaryKey)
+        accounts.map(\.primaryKey)
     }
-    
+
     var securityKeys: [SecurityKey] {
-       securities.map(\.primaryKey)
+        securities.map(\.primaryKey)
     }
 
     var strategyKeys: [StrategyKey] {
-       strategies.map(\.primaryKey)
+        strategies.map(\.primaryKey)
     }
 
     var assetKeys: [AssetKey] {
-       assets.map(\.primaryKey)
+        assets.map(\.primaryKey)
     }
 
     var trackerKeys: [TrackerKey] {
-       trackers.map(\.primaryKey)
+        trackers.map(\.primaryKey)
     }
-    
+
     // MARK: - Keyed Maps
 
     func makeAccountMap() -> AccountMap {
@@ -58,11 +56,11 @@ public extension BaseModel {
     func makeTrackerMap() -> TrackerMap {
         MTracker.makeAllocMap(trackers)
     }
-    
+
     func makeSnapshotMap() -> SnapshotMap {
         MValuationSnapshot.makeAllocMap(valuationSnapshots)
     }
-    
+
     func makeTransactionMap() -> TransactionMap {
         MTransaction.makeAllocMap(transactions)
     }
@@ -70,16 +68,15 @@ public extension BaseModel {
     // MARK: - Other maps
 
     var strategiedAccounts: [MAccount] {
-        accounts.filter { strategyKeys.contains( $0.strategyKey ) }
+        accounts.filter { strategyKeys.contains($0.strategyKey) }
     }
-    
+
     func makeAccountHoldingsMap() -> AccountHoldingsMap {
         Dictionary(grouping: holdings, by: { $0.accountKey })
     }
 }
 
 public extension BaseModel {
-    
     static func getAccountAssetValuesMap(accountHoldingsMap: AccountHoldingsMap, securityMap: SecurityMap) -> AccountAssetValuesMap {
         let accountKeys = accountHoldingsMap.map(\.key)
         let accountHoldingsSummaryMap = HoldingsSummary.getAccountAssetSummaryMap(accountKeys, accountHoldingsMap, securityMap)
@@ -102,14 +99,12 @@ public extension BaseModel {
     }
 }
 
-
 public extension BaseModel {
     // recent history items, suitable for caching in HighContext
     func getRecentTxns(since: Date) -> [MTransaction] {
         transactions.filter { $0.transactedAt >= since }
     }
 }
-
 
 public extension BaseModel {
     func getActiveAccounts(strategyKey: StrategyKey) -> [MAccount] {

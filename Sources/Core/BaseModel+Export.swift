@@ -13,7 +13,6 @@ import Foundation
 import AllocData
 import FINporter
 
-
 public extension BaseModel {
     func exportHordes(schema: AllocSchema,
                       format: AllocFormat) throws -> Data?

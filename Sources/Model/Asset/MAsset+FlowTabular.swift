@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MAsset: FlowTabular {
     public var parentAssetKey: MAsset.Key {
         MAsset.Key(assetID: parentAssetID)

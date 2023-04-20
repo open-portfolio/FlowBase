@@ -20,12 +20,13 @@ public struct HPositionKey: Hashable, Codable {
     let accountNormID: String
     let securityNormID: String
     let lotNormID: String
-    
+
     public init(accountID: AccountID,
                 securityID: SecurityID,
-                lotID: LotID) {
-        self.accountNormID = MHolding.normalizeID(accountID)
-        self.securityNormID = MHolding.normalizeID(securityID)
-        self.lotNormID = MHolding.normalizeID(lotID)
+                lotID: LotID)
+    {
+        accountNormID = MHolding.normalizeID(accountID)
+        securityNormID = MHolding.normalizeID(securityID)
+        lotNormID = MHolding.normalizeID(lotID)
     }
 }

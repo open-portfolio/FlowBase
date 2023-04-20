@@ -12,15 +12,15 @@ import Foundation
 
 import AllocData
 
-extension MTracker.Key {
+public extension MTracker.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.trackerNormID != ""
+    var isValid: Bool {
+        trackerNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: TrackerKey) throws {
+public extension BaseModel {
+    func validate(for key: TrackerKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.trackerNormID)' is not a valid tracker key.")
@@ -33,7 +33,7 @@ extension BaseModel {
 }
 
 extension MTracker: BaseValidator {
-    public func validate(epsilon: Double = 0.0001) throws {
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for index tracker: [\(primaryKey)].")
         }

@@ -23,7 +23,7 @@ class CapValidationTests: XCTestCase {
         let expected = MCap.Key(accountID: "A B C", assetID: "D E F")
         XCTAssertEqual(expected, actual)
     }
-    
+
     func testMissingAssetClassFails() throws {
         for isNew in [true, false] {
             let account = MAccount(accountID: "1")
@@ -35,7 +35,7 @@ class CapValidationTests: XCTestCase {
             }
         }
     }
-    
+
     func testInvalidTargetPercentFails() throws {
         for limitPct in [-1, -0.001, 1.001, 2] {
             let expected = "'\(limitPct.format3())' is not a valid limit percent for account cap."
@@ -45,11 +45,11 @@ class CapValidationTests: XCTestCase {
             }
         }
     }
-    
+
     func testSliceLimitPctMustBeInRange() throws {
         let ac = "Equities"
         let accountID = "1"
-        
+
         for limitPct in [-0.1, -0.01, -0.001, -0.0001, 1.1, 1.01, 1.001, 1.00011] {
             let expected = "'\(limitPct.format3())' is not a valid limit percent for account cap."
             let cap = MCap(accountID: accountID, assetID: ac, limitPct: limitPct)
@@ -57,7 +57,7 @@ class CapValidationTests: XCTestCase {
                 XCTAssertEqual(error as! FlowBaseError, FlowBaseError.validationFailure(expected))
             }
         }
-        
+
         for limitPct in [0, 0.1, 0.9, 1.0] {
             let cap = MCap(accountID: accountID, assetID: ac, limitPct: limitPct)
             XCTAssertNoThrow(try cap.validate(), "limitPct=\(limitPct)")

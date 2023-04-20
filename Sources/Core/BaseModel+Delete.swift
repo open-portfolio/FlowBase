@@ -13,12 +13,11 @@ import Foundation
 import AllocData
 
 public extension BaseModel {
-    
     mutating func delete(_ account: MAccount) {
         let pk = account.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MAccount.ID) {
         caps.removeAll(where: { $0.accountKey == pk })
         holdings.removeAll(where: { $0.accountKey == pk })
@@ -29,7 +28,7 @@ public extension BaseModel {
         let pk = allocation.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MAllocation.ID) {
         allocations.removeAll(where: { $0.primaryKey == pk })
     }
@@ -38,13 +37,13 @@ public extension BaseModel {
         let pk = asset.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MAsset.ID) {
-        for n in 0..<assets.count {
+        for n in 0 ..< assets.count {
             guard assets[n].parentAssetKey == pk else { continue }
             assets[n].parentAssetID = ""
         }
-        for n in 0..<securities.count {
+        for n in 0 ..< securities.count {
             guard securities[n].assetKey == pk else { continue }
             securities[n].assetID = ""
         }
@@ -57,7 +56,7 @@ public extension BaseModel {
         let pk = holding.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MHolding.ID) {
         holdings.removeAll(where: { $0.primaryKey == pk })
     }
@@ -66,7 +65,7 @@ public extension BaseModel {
         let pk = security.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MSecurity.ID) {
         holdings.removeAll(where: { $0.securityKey == pk })
         securities.removeAll(where: { $0.primaryKey == pk })
@@ -76,9 +75,9 @@ public extension BaseModel {
         let pk = strategy.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MStrategy.ID) {
-        for n in 0..<accounts.count {
+        for n in 0 ..< accounts.count {
             guard accounts[n].strategyKey == pk else { continue }
             accounts[n].strategyID = ""
         }
@@ -90,9 +89,9 @@ public extension BaseModel {
         let pk = index.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MTracker.ID) {
-        for n in 0..<securities.count {
+        for n in 0 ..< securities.count {
             guard securities[n].trackerKey == pk else { continue }
             securities[n].trackerID = ""
         }
@@ -103,7 +102,7 @@ public extension BaseModel {
         let pk = cap.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MCap.ID) {
         caps.removeAll(where: { $0.primaryKey == pk })
     }
@@ -112,37 +111,37 @@ public extension BaseModel {
         let pk = transaction.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MTransaction.ID) {
         transactions.removeAll(where: { $0.primaryKey == pk })
     }
-    
+
     mutating func delete(_ item: MValuationSnapshot) {
         let pk = item.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MValuationSnapshot.ID) {
         valuationPositions.removeAll(where: { $0.snapshotKey == pk })
         valuationSnapshots.removeAll(where: { $0.primaryKey == pk })
-        
+
         // NOTE explicitly not deleting cashflow in range of snapshot
     }
-    
+
     mutating func delete(_ item: MValuationPosition) {
         let pk = item.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MValuationPosition.ID) {
         valuationPositions.removeAll(where: { $0.primaryKey == pk })
     }
-    
+
     mutating func delete(_ item: MValuationCashflow) {
         let pk = item.primaryKey
         delete(pk)
     }
-        
+
     mutating func delete(_ pk: MValuationCashflow.ID) {
         valuationCashflows.removeAll(where: { $0.primaryKey == pk })
     }

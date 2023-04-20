@@ -34,7 +34,3 @@ public let badTickers = [
     "TNT", "DRUT", "TAWT", "KCU", "RBIV", "BAW", "KNAW", "BTEW", "TIHW", "ZIHW",
     "POHW", "GOW", "POW", "FTW", "SSUW", "CTX", "XXX",
 ].map { String($0.reversed()) }
-
-
-
-

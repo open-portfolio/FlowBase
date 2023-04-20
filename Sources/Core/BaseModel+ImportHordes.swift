@@ -13,19 +13,19 @@ import Foundation
 import AllocData
 import FINporter
 
-extension BaseModel {
-    public typealias AllocBaseKeyPath<T: AllocBase> = WritableKeyPath<BaseModel, [T]>
-    
+public extension BaseModel {
+    typealias AllocBaseKeyPath<T: AllocBase> = WritableKeyPath<BaseModel, [T]>
+
     /// NOTE used BOTH in import and unpack (file load)
-    mutating public func importHordes(_ data: Data,
-                                      finPorter: FINporter,
-                                      schema: AllocSchema,
-                                      rejectedRows: inout [AllocRowed.RawRow],
-                                      finFormat: AllocFormat? = nil,
-                                      url: URL? = nil,
-                                      timestamp: Date? = nil,
-                                      timeZone: TimeZone,
-                                      defTimeOfDay: String?) throws
+    mutating func importHordes(_ data: Data,
+                               finPorter: FINporter,
+                               schema: AllocSchema,
+                               rejectedRows: inout [AllocRowed.RawRow],
+                               finFormat: AllocFormat? = nil,
+                               url: URL? = nil,
+                               timestamp: Date? = nil,
+                               timeZone: TimeZone,
+                               defTimeOfDay: String?) throws
     {
         switch schema {
         case .allocAccount:

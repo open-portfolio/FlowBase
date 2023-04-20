@@ -20,12 +20,10 @@ extension MValuationSnapshot: Comparable {
 }
 
 extension MValuationSnapshot.Key: Comparable {
-    
     public static func < (lhs: MValuationSnapshot.Key, rhs: MValuationSnapshot.Key) -> Bool {
         if lhs.snapshotNormID < rhs.snapshotNormID { return true }
         if lhs.snapshotNormID > rhs.snapshotNormID { return false }
 
         return false
     }
-
 }

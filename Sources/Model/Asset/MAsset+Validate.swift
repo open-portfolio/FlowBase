@@ -12,16 +12,15 @@ import Foundation
 
 import AllocData
 
-
-extension MAsset.Key {
+public extension MAsset.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.assetNormID != ""
+    var isValid: Bool {
+        assetNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: AssetKey) throws {
+public extension BaseModel {
+    func validate(for key: AssetKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.assetNormID)' is not a valid asset key.")
@@ -34,7 +33,7 @@ extension BaseModel {
 }
 
 extension MAsset: BaseValidator {
-    public func validate(epsilon: Double = 0.0001) throws {
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for asset: [\(primaryKey)].")
         }
@@ -60,7 +59,7 @@ extension MAsset: BaseValidator {
         }
 
         // Foreign Key validation
-        
+
         // ensure parent "foreign key" is valid
         let map = model.makeAssetMap()
         if parentAssetKey.isValid,
@@ -68,7 +67,7 @@ extension MAsset: BaseValidator {
         {
             throw FlowBaseError.validationFailure("'\(parentAssetID)' is not a valid parent asset class for '\(assetID)'.")
         }
-        
+
         let assetKey = primaryKey
         var asset = self
         while asset.parentAssetKey.isValid,

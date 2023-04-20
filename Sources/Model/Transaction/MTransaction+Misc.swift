@@ -19,8 +19,7 @@ extension MTransaction.Key: CustomStringConvertible {
 }
 
 public extension MTransaction {
-
     func getAssetKey(securityMap: SecurityMap) -> AssetKey? {
-        securityMap[self.securityKey]?.assetKey
+        securityMap[securityKey]?.assetKey
     }
 }

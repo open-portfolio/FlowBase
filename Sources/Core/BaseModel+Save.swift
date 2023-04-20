@@ -13,7 +13,6 @@ import Foundation
 import AllocData
 
 extension BaseModel {
-    
     /// originalID == nil for adding new records
     /// returns true if saved; false if not
     public mutating func save<T: Identifiable>(_ element: T, to kp: AllocBaseKeyPath<T>, originalID: T.ID?) {
@@ -22,7 +21,8 @@ extension BaseModel {
 
     internal static func saveHelper<T: Identifiable>(_ modelArray: inout [T],
                                                      _ element: T,
-                                                     originalID: T.ID?) -> Bool {
+                                                     originalID: T.ID?) -> Bool
+    {
         let netID = originalID ?? element.id
         let idx = modelArray.firstIndex(where: { $0.id == netID })
         if originalID == nil {
@@ -37,4 +37,3 @@ extension BaseModel {
         return true
     }
 }
-

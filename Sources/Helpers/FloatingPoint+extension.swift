@@ -47,12 +47,12 @@ public extension BinaryFloatingPoint {
     func isEqualToZero<T: BinaryFloatingPoint>(accuracy: T) -> Bool {
         isEqual(to: 0, accuracy: accuracy)
     }
-    
+
     @inlinable
     func isNotEqualToZero<T: BinaryFloatingPoint>(accuracy: T) -> Bool {
         !isEqualToZero(accuracy: accuracy)
     }
-    
+
     @inlinable
     func coerceIfEqual<T: BinaryFloatingPoint>(to other: T, accuracy: T) -> T {
         isEqual(to: other, accuracy: accuracy) ? other : T(self)

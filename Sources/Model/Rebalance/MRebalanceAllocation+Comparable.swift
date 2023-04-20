@@ -13,14 +13,13 @@ import Foundation
 import AllocData
 
 extension MRebalanceAllocation.Key: Comparable {
-    
     public static func < (lhs: MRebalanceAllocation.Key, rhs: MRebalanceAllocation.Key) -> Bool {
         if lhs.accountNormID < rhs.accountNormID { return true }
         if lhs.accountNormID > rhs.accountNormID { return false }
 
         if lhs.assetNormID < rhs.assetNormID { return true }
         if lhs.assetNormID > rhs.assetNormID { return false }
-        
+
         return false
     }
 }

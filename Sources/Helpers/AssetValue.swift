@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 // for holding amounts and targetPct for assets
 public struct AssetValue: Codable, Hashable {
     public var assetKey: AssetKey

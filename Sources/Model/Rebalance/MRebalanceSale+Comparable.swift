@@ -13,14 +13,13 @@ import Foundation
 import AllocData
 
 extension MRebalanceSale.Key: Comparable {
-    
     public static func < (lhs: MRebalanceSale.Key, rhs: MRebalanceSale.Key) -> Bool {
         if lhs.accountNormID < rhs.accountNormID { return true }
         if lhs.accountNormID > rhs.accountNormID { return false }
 
         if lhs.securityNormID < rhs.securityNormID { return true }
         if lhs.securityNormID > rhs.securityNormID { return false }
-        
+
         if lhs.lotNormID < rhs.lotNormID { return true }
         if lhs.lotNormID > rhs.lotNormID { return false }
 

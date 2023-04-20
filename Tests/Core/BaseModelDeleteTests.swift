@@ -17,9 +17,8 @@ import FINporter
 @testable import FlowBase
 
 class BaseModelDeleteTests: XCTestCase {
-    
     // Tests to ensure foreign keys are invalidated
-    
+
     func testInvalidateAccountsFKonStrategyDelete() throws {
         let strategy = MStrategy(strategyID: "1")
         let account = MAccount(accountID: "2", strategyID: "1")
@@ -35,7 +34,7 @@ class BaseModelDeleteTests: XCTestCase {
         model.delete(tracker)
         XCTAssertEqual("", model.securities.first?.trackerID)
     }
-    
+
     func testInvalidateParentAssetFK() throws {
         let parent = MAsset(assetID: "1")
         let child = MAsset(assetID: "2", parentAssetID: "1")
@@ -52,6 +51,5 @@ class BaseModelDeleteTests: XCTestCase {
         XCTAssertEqual("", model.securities.first?.assetID)
     }
 
-    // TODO tests to ensure cascade deletes
-    
+    // TODO: tests to ensure cascade deletes
 }

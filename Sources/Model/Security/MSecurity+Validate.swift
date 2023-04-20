@@ -12,15 +12,15 @@ import Foundation
 
 import AllocData
 
-extension MSecurity.Key {
+public extension MSecurity.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.securityNormID != ""
+    var isValid: Bool {
+        securityNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: SecurityKey) throws {
+public extension BaseModel {
+    func validate(for key: SecurityKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.securityNormID)' is not a valid security key.")
@@ -33,7 +33,6 @@ extension BaseModel {
 }
 
 extension MSecurity: BaseValidator {
-    
     public var isSharePriceValid: Bool {
         guard let _sharePrice = sharePrice,
               _sharePrice >= 0
@@ -41,24 +40,23 @@ extension MSecurity: BaseValidator {
         return true
     }
 
-    public func validate(epsilon: Double = 0.0001) throws {
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for security: [\(primaryKey)].")
         }
-        
+
         if let _sharePrice = sharePrice {
             guard isSharePriceValid else {
                 throw FlowBaseError.validationFailure("'\(_sharePrice.format2())' is not a valid share price for security.")
             }
         }
-        
+
         // NOTE: ignoring updatedAt and trackerID
     }
 
     public func validate(against model: BaseModel, isNew: Bool) throws {
-        
-       let _primaryKey = primaryKey
-        
+        let _primaryKey = primaryKey
+
         if isNew {
             guard !model.containsKey(_primaryKey, keyPath: \.securities)
             else {
@@ -67,7 +65,7 @@ extension MSecurity: BaseValidator {
         }
 
         // Foreign Key validation
-        
+
         if assetKey.isValid {
             try model.validate(for: assetKey)
         }
@@ -77,10 +75,8 @@ extension MSecurity: BaseValidator {
     }
 }
 
-extension MSecurity {
-    
-    public static func validateDeep(against ax: BaseContext) throws {
-        
+public extension MSecurity {
+    static func validateDeep(against ax: BaseContext) throws {
         // ensure that all securities held are priced and have asset class assignments
         let tickers = ax.activeTickersMissingSomething
         if tickers.count > 0 {

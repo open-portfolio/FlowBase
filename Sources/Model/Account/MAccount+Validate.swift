@@ -12,15 +12,15 @@ import Foundation
 
 import AllocData
 
-extension MAccount.Key {
+public extension MAccount.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.accountNormID != ""
+    var isValid: Bool {
+        accountNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: AccountKey) throws {
+public extension BaseModel {
+    func validate(for key: AccountKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.accountNormID)' is not a valid account key.")
@@ -33,8 +33,7 @@ extension BaseModel {
 }
 
 extension MAccount: BaseValidator {
-    
-    public func validate(epsilon: Double = 0.0001) throws {
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for account: [\(primaryKey)].")
         }

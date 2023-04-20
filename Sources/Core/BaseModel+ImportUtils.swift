@@ -14,15 +14,15 @@ import AllocData
 import FINporter
 
 extension BaseModel {
-    
     /// return true if the model contains the specified key (for the table)
     func containsKey<T>(_ key: T.Key, keyPath: AllocBaseKeyPath<T>) -> Bool
-    where T: AllocKeyed {
+        where T: AllocKeyed
+    {
         getIndex(primaryKey: key, from: keyPath) != nil
     }
-    
+
     // High-level row importer. Will create foreign key records and validate too.
-    mutating public func importRow<T>(_ other: AllocRowed.DecodedRow, into keyPath: AllocBaseKeyPath<T>) throws -> Int
+    public mutating func importRow<T>(_ other: AllocRowed.DecodedRow, into keyPath: AllocBaseKeyPath<T>) throws -> Int
         where T: AllocRowed & AllocBase & FlowTabular & BaseValidator
     {
         let (record, index) = try importAdditive(from: other, into: keyPath)
@@ -33,7 +33,7 @@ extension BaseModel {
     // Does NOT create minimal records for foreign keys.
     // Does NOT validate (call try importValidate(record, model) separately)
     // Used directly in Detail.
-    mutating public func importRecord<T>(_ record: T, into keyPath: AllocBaseKeyPath<T>) throws -> Int
+    public mutating func importRecord<T>(_ record: T, into keyPath: AllocBaseKeyPath<T>) throws -> Int
         where T: AllocBase & FlowTabular & BaseValidator
     {
         let index = getIndex(primaryKey: record.primaryKey, from: keyPath)
@@ -42,7 +42,7 @@ extension BaseModel {
 
     // Used during bulk import to establish foreign key records, allowing imports to be done in any order.
     // NOTE: assumes existing record with key does NOT yet exist
-    mutating public func importMinimal<T>(_ element: T, into keyPath: AllocBaseKeyPath<T>) throws -> Int
+    public mutating func importMinimal<T>(_ element: T, into keyPath: AllocBaseKeyPath<T>) throws -> Int
         where T: AllocBase & FlowTabular & AllocKeyed
     {
         if let n = getIndex(primaryKey: element.primaryKey, from: keyPath) { return n }
@@ -118,7 +118,7 @@ extension BaseModel {
         where T: BaseValidator
     {
         try record.validate(epsilon: 0.0001)
-        
+
         // NOTE import can be for new or existing records
         try record.validate(against: self, isNew: false)
     }

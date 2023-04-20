@@ -13,7 +13,6 @@ import Foundation
 import AllocData
 
 public extension HoldingsSummary {
-    
     static func getTickerSummaryMap(_ holdings: [MHolding], _ securityMap: SecurityMap) -> TickerHoldingsSummaryMap {
         let tickerHoldingsMap: [SecurityKey: [MHolding]] = Dictionary(grouping: holdings, by: { $0.securityKey })
         let tickerSummaryTuples: [(SecurityKey, HoldingsSummary)] = tickerHoldingsMap.compactMap { tickerKey, holdings in

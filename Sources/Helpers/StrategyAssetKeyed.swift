@@ -19,17 +19,18 @@ public protocol StrategyAssetKeyed {
 public struct StrategyAssetKey: Hashable {
     let strategyNormID: String
     let assetNormID: String
-    
+
     public init(strategyID: StrategyID,
-                assetID: AssetID) {
-        self.strategyNormID = MHolding.normalizeID(strategyID)
-        self.assetNormID = MHolding.normalizeID(assetID)
+                assetID: AssetID)
+    {
+        strategyNormID = MHolding.normalizeID(strategyID)
+        assetNormID = MHolding.normalizeID(assetID)
     }
-    
+
     public var strategyKey: StrategyKey {
         MStrategy.Key(strategyID: strategyNormID)
     }
-    
+
     public var assetKey: AssetKey {
         MAsset.Key(assetID: assetNormID)
     }
@@ -38,14 +39,14 @@ public struct StrategyAssetKey: Hashable {
 extension StrategyAssetKey: Comparable {
     public static func < (lhs: StrategyAssetKey, rhs: StrategyAssetKey) -> Bool {
         lhs.strategyNormID < rhs.strategyNormID ||
-        (lhs.strategyNormID == rhs.strategyNormID && lhs.assetNormID < rhs.assetNormID)
+            (lhs.strategyNormID == rhs.strategyNormID && lhs.assetNormID < rhs.assetNormID)
     }
 }
 
 public extension StrategyAssetKeyed {
     static func getStrategyAssetKeyMap<T: StrategyAssetKeyed>(_ elements: [T]) -> [StrategyAssetKey: [T]] {
         elements.reduce(into: [:]) { map, element in
-            map[ element.strategyAssetKey, default: [] ].append(element)
+            map[element.strategyAssetKey, default: []].append(element)
         }
     }
 }

@@ -19,7 +19,7 @@ import FlowBase
 
 class TransactionValidationTests: XCTestCase {
     let timestamp = Date()
-    
+
     func testValidate() {
         for badSharePrice in [-100, -0.01, 0] {
             let t1 = MTransaction(action: .buysell, transactedAt: timestamp, accountID: "1", securityID: "BND", lotID: "3", shareCount: 1, sharePrice: badSharePrice)

@@ -13,7 +13,6 @@ import Foundation
 import AllocData
 
 public struct BaseModel: Identifiable, Codable {
-    
     public var id: UUID
     public var updatedAt: Date
 

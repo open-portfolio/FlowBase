@@ -17,17 +17,16 @@ import FINporter
 @testable import FlowBase
 
 class TransactionImportTests: XCTestCase {
-    
     var df: ISO8601DateFormatter!
     var timestamp1: Date!
     var model: BaseModel!
-    //var ax: WorthContext!
+    // var ax: WorthContext!
 
     override func setUpWithError() throws {
         df = ISO8601DateFormatter()
         timestamp1 = df.date(from: "2020-01-31T12:00:00Z")!
         model = BaseModel()
-        //ax = WorthContext(model)
+        // ax = WorthContext(model)
     }
 
     func testForeignKeyToSecuritiesCreated() throws {
@@ -50,43 +49,43 @@ class TransactionImportTests: XCTestCase {
         XCTAssertEqual(1, model.accounts.count)
         XCTAssertEqual(MAccount(accountID: "1", title: nil, isTaxable: false), model.accounts.first!)
     }
-    
+
     func testExactDuplicate() throws {
         let security = MSecurity(securityID: "SPY", assetID: "equities")
         let account = MAccount(accountID: "1", title: "One")
         model.securities = [security]
         model.accounts = [account]
         let row: AllocRowed.DecodedRow = ["txnAction": MTransaction.Action.buysell, "txnTransactedAt": timestamp1,
-                                  "txnAccountID": account.accountID,
-                                  "txnSecurityID": security.securityID,
-                                  "txnLotID": "",
-                                  "txnShareCount": 1.0,
-                                  "txnSharePrice": 1.0]
+                                          "txnAccountID": account.accountID,
+                                          "txnSecurityID": security.securityID,
+                                          "txnLotID": "",
+                                          "txnShareCount": 1.0,
+                                          "txnSharePrice": 1.0]
         XCTAssertEqual(0, model.transactions.count)
         _ = try model.importRow(row, into: \.transactions)
         _ = try model.importRow(row, into: \.transactions)
         XCTAssertEqual(1, model.transactions.count)
     }
-    
+
     func testDifferById() throws {
         let security = MSecurity(securityID: "SPY", assetID: "equities")
         let account = MAccount(accountID: "1", title: "One")
         model.securities = [security]
         model.accounts = [account]
         var row: AllocRowed.DecodedRow = ["txnAction": MTransaction.Action.buysell, "txnTransactedAt": timestamp1,
-                                  "txnAccountID": account.accountID,
-                                  "txnSecurityID": security.securityID,
-                                  "txnLotID": "",
-                                  "txnShareCount": 1.0,
-                                  "txnSharePrice": 1.0,
-                                  "transactionID": "A"]
+                                          "txnAccountID": account.accountID,
+                                          "txnSecurityID": security.securityID,
+                                          "txnLotID": "",
+                                          "txnShareCount": 1.0,
+                                          "txnSharePrice": 1.0,
+                                          "transactionID": "A"]
         XCTAssertEqual(0, model.transactions.count)
         _ = try model.importRow(row, into: \.transactions)
         row["transactionID"] = "B"
         _ = try model.importRow(row, into: \.transactions)
         XCTAssertEqual(1, model.transactions.count)
     }
-    
+
     func testSecurityTransfer() throws {
         // tolerate no shareprice on transaction
         // only number of shares transferred, but no valuation

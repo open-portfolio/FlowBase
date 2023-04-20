@@ -19,7 +19,7 @@ extension MAllocation.Key: Comparable {
 
         if lhs.assetNormID < rhs.assetNormID { return true }
         if lhs.assetNormID > rhs.assetNormID { return false }
-        
+
         return false
     }
 }

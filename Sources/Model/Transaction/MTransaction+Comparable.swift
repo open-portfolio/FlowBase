@@ -15,7 +15,7 @@ import AllocData
 // NOTE this is similar to MValuationCashflow's Comparable
 // NOTE it ignores transactionID
 extension MTransaction: Comparable {
-    public static func < (lhs: MTransaction, rhs: MTransaction) -> Bool {      
+    public static func < (lhs: MTransaction, rhs: MTransaction) -> Bool {
         if lhs.transactedAt < rhs.transactedAt { return true }
         if lhs.transactedAt > rhs.transactedAt { return false }
 
@@ -31,10 +31,8 @@ extension MTransaction: Comparable {
         return false
     }
 }
-    
+
 extension MTransaction.Key: Comparable {
-    
-    
     public static func < (lhs: MTransaction.Key, rhs: MTransaction.Key) -> Bool {
         if lhs.transactedAt < rhs.transactedAt { return true }
         if lhs.transactedAt > rhs.transactedAt { return false }
@@ -52,20 +50,18 @@ extension MTransaction.Key: Comparable {
 //        if lhs.sharePrice > rhs.sharePrice { return false }
         return false
     }
-
 }
 
 extension MTransaction.Action: Comparable {
     public static func < (lhs: MTransaction.Action, rhs: MTransaction.Action) -> Bool {
         lhs.rawValue < rhs.rawValue
     }
-    
 }
 
-//extension BaseModel {
-//    
+// extension BaseModel {
+//
 //    /// sort using the provided comparator, with option to use the comparator in reverse
 //    public mutating func sortBy(_ forward: Bool = true, _ comparator: (MTransaction, MTransaction) -> Bool ) {
 //        sortByField(forward, \.transactions, comparator)
 //    }
-//}
+// }

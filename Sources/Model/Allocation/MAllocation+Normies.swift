@@ -15,7 +15,7 @@ import AllocData
 public extension BaseModel {
     func getAllocationIndexes(for strategyKey: StrategyKey) -> IndexSet {
         IndexSet(
-            self.allocations.enumerated().compactMap { n, allocation in
+            allocations.enumerated().compactMap { n, allocation in
                 guard allocation.strategyKey == strategyKey else { return nil }
                 return n
             }

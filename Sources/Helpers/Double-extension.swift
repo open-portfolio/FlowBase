@@ -55,4 +55,3 @@ public extension Double {
         String(format: "$%.2f", self)
     }
 }
-

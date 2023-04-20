@@ -19,7 +19,6 @@ extension MSecurity: Comparable {
 }
 
 extension MSecurity.Key: Comparable {
-    
     public static func < (lhs: MSecurity.Key, rhs: MSecurity.Key) -> Bool {
         if lhs.securityNormID < rhs.securityNormID { return true }
         if lhs.securityNormID > rhs.securityNormID { return false }

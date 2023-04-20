@@ -21,27 +21,27 @@ class AccountValidationTests: XCTestCase {
         let expected = MAccount.Key(accountID: "ab c")
         XCTAssertEqual(expected, actual)
     }
-    
+
     func testMissingIDFails() throws {
         let expected = "Invalid primary key for account: [AccountID: '']."
         XCTAssertThrowsError(try MAccount(accountID: "  \n ", title: "b").validate()) { error in
             XCTAssertEqual(error as! FlowBaseError, FlowBaseError.validationFailure(expected))
         }
     }
-    
+
     func testMissingTitleSucceeds() throws {
         XCTAssertNoThrow(try MAccount(accountID: "a", title: "  \n ").validate())
     }
-    
+
     func testConflictingTitlesInModel() throws {
         for isNew in [true, false] {
             var model = BaseModel()
-            
+
             model.accounts = [MAccount(accountID: "1", title: "a")]
-            
+
             let account = MAccount(accountID: "2", title: "A")
             XCTAssertNoThrow(try account.validate())
-            
+
             let expected = "Conflicting titles 'A'."
             XCTAssertThrowsError(try account.validate(against: model, isNew: isNew)) { error in
                 XCTAssertEqual(error as! FlowBaseError, FlowBaseError.validationFailure(expected))

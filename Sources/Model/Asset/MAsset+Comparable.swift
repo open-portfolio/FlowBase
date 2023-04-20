@@ -24,11 +24,9 @@ extension MAsset: Comparable {
 }
 
 extension MAsset.Key: Comparable {
-    
     public static func < (lhs: MAsset.Key, rhs: MAsset.Key) -> Bool {
         if lhs.assetNormID < rhs.assetNormID { return true }
         if lhs.assetNormID > rhs.assetNormID { return false }
         return false
     }
-
 }

@@ -25,7 +25,7 @@ class HoldingImportTests: XCTestCase {
         let accountHoldings = model.makeAccountHoldingsMap()[account.primaryKey] ?? []
         XCTAssertEqual([MHolding(accountID: "1", securityID: security.securityID, lotID: "", shareCount: 1, shareBasis: 1)], accountHoldings)
     }
-    
+
     func testNegativeSharecount() throws {
         let security = MSecurity(securityID: "a", assetID: "aaa")
         let account = MAccount(accountID: "1", title: "One")

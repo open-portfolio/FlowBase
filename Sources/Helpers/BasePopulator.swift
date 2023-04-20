@@ -14,13 +14,12 @@ import Algorithms
 import AllocData
 
 public struct BasePopulator {
-    
     public var assetMap: AssetMap
     public var securityMap: SecurityMap
     public var assetPool: [MAsset]
     public var securityPool: [MSecurity]
     public var includeLiabilities: Bool
-    
+
     public init(_ model: inout BaseModel,
                 assetCount: Int = 10,
                 tickerCount: Int = 10,
@@ -28,21 +27,22 @@ public struct BasePopulator {
                 accountsPerStrategy: Int = 4,
                 baseSharePrice: Double = 100.0,
                 includeLiabilities: Bool = false,
-                timestamp: Date = Date()) {
+                timestamp: Date = Date())
+    {
         self.includeLiabilities = includeLiabilities
         assetMap = model.makeAssetMap()
         securityMap = model.makeSecurityMap()
-        
+
         assetPool = BasePopulator.getAssetPool(model, assetCount: assetCount, assetMap: assetMap)
-        
+
         let assetKeyPool = Set(assetPool.map(\.primaryKey))
         securityPool = BasePopulator.getSecurityPool(model, tickerCount, assetKeyPool, assetMap, baseSharePrice, timestamp)
         model.securities = securityPool
-        
+
         model.strategies = BasePopulator.strategyPool.randomSample(count: strategyCount)
         let strategyKeys = model.strategies.map(\.primaryKey)
         model.allocations = BasePopulator.allocationPool.filter { strategyKeys.contains($0.strategyKey) }
-        
+
         model.accounts = BasePopulator.populateGetAccounts(model, accountsPerStrategy: accountsPerStrategy)
 
         model.holdings = BasePopulator.getHoldings(model, randomSecurity, includeLiabilities)
@@ -51,12 +51,12 @@ public struct BasePopulator {
     public var assetKeyPool: Set<AssetKey> {
         Set(assetPool.map(\.primaryKey))
     }
-    
+
     public func randomAsset() -> MAsset {
         let assetKey = assetKeyPool.randomElement()!
         return assetMap[assetKey]!
     }
-    
+
     public func randomSecurity() -> MSecurity {
         securityPool.randomElement()!
     }
@@ -77,19 +77,20 @@ public struct BasePopulator {
                             strategyID: strategy.strategyID)
         }
     }
-    
+
     public static func getHoldings(_ model: BaseModel,
                                    _ randomSecurity: () -> MSecurity,
-                                   _ includeLiabilities: Bool) -> [MHolding] {
+                                   _ includeLiabilities: Bool) -> [MHolding]
+    {
         let holdingArrays: [[MHolding]] = model.accounts.map { account in
             let holdingRange = 1 ... Int.random(in: 3 ... 10)
             let holdings: [MHolding] = holdingRange.compactMap { _ in
-                
+
                 let security = randomSecurity()
                 let securityID = security.securityID
                 let shareCount = includeLiabilities ? Double.random(in: -500 ... 500) : Double.random(in: 1 ... 1000)
                 let shareBasis = security.isCashAsset ? 1.0 : getNetSharePrice(security.sharePrice!)
-                
+
                 return MHolding(accountID: account.accountID,
                                 securityID: securityID,
                                 lotID: "",
@@ -100,7 +101,7 @@ public struct BasePopulator {
         }
         return holdingArrays.flatMap { $0 }
     }
-    
+
     // assets of all the allocations, plus a few randos
     public static func getAssetPool(_ model: BaseModel, assetCount: Int = 10, assetMap: AssetMap) -> [MAsset] {
         var assetKeyPool = Set(model.allocations.map(\.assetKey))
@@ -111,13 +112,14 @@ public struct BasePopulator {
         }
         return assetKeyPool.compactMap { assetMap[$0] }
     }
-    
+
     public static func getSecurityPool(_ model: BaseModel,
                                        _ tickerCount: Int,
                                        _ assetKeyPool: Set<AssetKey>,
                                        _ _assetMap: AssetMap,
                                        _ baseSharePrice: Double,
-                                       _ timestamp: Date = Date()) -> [MSecurity] {
+                                       _ timestamp: Date = Date()) -> [MSecurity]
+    {
         var pool = [MSecurity]()
         (0 ..< tickerCount).forEach { _ in
             let ticker = randomTicker(model)
@@ -129,33 +131,33 @@ public struct BasePopulator {
                                      assetID: assetID,
                                      sharePrice: sharePrice,
                                      updatedAt: timestamp)
-            pool.append( security)
+            pool.append(security)
         }
         return pool
     }
-    
-    mutating public func refreshSecurityPrices(timestamp: Date = Date()) {
-        for n in 0..<(securityPool.count - 1) {
+
+    public mutating func refreshSecurityPrices(timestamp: Date = Date()) {
+        for n in 0 ..< (securityPool.count - 1) {
             guard !securityPool[n].isCashAsset else { continue }
             securityPool[n].sharePrice = BasePopulator.getNetSharePrice(securityPool[n].sharePrice ?? 0)
             securityPool[n].updatedAt = timestamp
         }
     }
-    
+
     static let alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    
+
     static func randomTicker(_ model: BaseModel) -> String {
         let count = Bool.random() ? 3 : 4
         let word = alpha.randomSample(count: count).map { String($0) }.joined()
         return badTickers.contains(word) ? randomTicker(model) : word
     }
-    
+
     public static func getNetSharePrice(_ basePrice: Double) -> Double {
         let foo = basePrice / 2
         guard foo > 1 else { return foo }
         return max(1, basePrice + (Double.random(in: 1 ... foo) - foo / 2))
     }
-    
+
     public static let strategyPool: [MStrategy] = [
         MStrategy(strategyID: "60/40", title: "60/40"),
         MStrategy(strategyID: "Coffee", title: "Shultheis' Coffeehouse"),
@@ -163,7 +165,7 @@ public struct BasePopulator {
         MStrategy(strategyID: "Swenson", title: "Swenson's Portfolio"),
         MStrategy(strategyID: "Pinwheel", title: "Portfolio Charts' Pinwheel Portfolio"),
     ]
-    
+
     public static let allocationPool: [MAllocation] = [
         MAllocation(strategyID: "60/40", assetID: "LC", targetPct: 0.6),
         MAllocation(strategyID: "60/40", assetID: "Bond", targetPct: 0.4),

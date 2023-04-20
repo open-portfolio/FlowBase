@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MHolding: FlowTabular {
     public var accountKey: MAccount.Key {
         MAccount.Key(accountID: accountID)

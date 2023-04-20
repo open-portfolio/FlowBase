@@ -12,15 +12,15 @@ import Foundation
 
 import AllocData
 
-extension MValuationSnapshot.Key {
+public extension MValuationSnapshot.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.snapshotNormID != ""
+    var isValid: Bool {
+        snapshotNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: SnapshotKey) throws {
+public extension BaseModel {
+    func validate(for key: SnapshotKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.snapshotNormID)' is not a valid snapshot key.")
@@ -33,14 +33,13 @@ extension BaseModel {
 }
 
 extension MValuationSnapshot: BaseValidator {
-    public func validate(epsilon: Double = 0.0001) throws {
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for snapshot: [\(primaryKey)].")
         }
     }
 
     public func validate(against model: BaseModel, isNew: Bool) throws {
-        
         if isNew {
             guard !model.containsKey(primaryKey, keyPath: \.valuationSnapshots)
             else {

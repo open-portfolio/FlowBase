@@ -14,7 +14,7 @@ import AllocData
 import FINporter
 
 public func exportData<T: AllocAttributable>(_ records: [T],
-                          format: AllocFormat) throws -> Data
+                                             format: AllocFormat) throws -> Data
     where T: AllocBase & Encodable
 {
     guard let delimiter = format.delimiter

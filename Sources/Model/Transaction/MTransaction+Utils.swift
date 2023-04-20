@@ -13,15 +13,14 @@ import Foundation
 import AllocData
 
 public extension MTransaction {
-    
     var isSell: Bool {
         action == .buysell && shareCount < 0
     }
-    
+
     var isBuy: Bool {
         action == .buysell && shareCount > 0
     }
-    
+
     // used to highlight cells in table
     func needsRealizedGain(_ thirtyDaysBack: Date?,
                            _ securityMap: SecurityMap,

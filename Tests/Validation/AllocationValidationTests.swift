@@ -21,7 +21,7 @@ class AllocationValidationTests: XCTestCase {
         let expected = MAllocation.Key(strategyID: "A B C", assetID: "D E F")
         XCTAssertEqual(expected, actual)
     }
-    
+
     func testInvalidAssetClassFails() throws {
         for isNew in [true, false] {
             let strategy = MStrategy(strategyID: "1")
@@ -33,7 +33,7 @@ class AllocationValidationTests: XCTestCase {
             }
         }
     }
-    
+
     func testInvalidStrategyFails() throws {
         for isNew in [true, false] {
             let asset = MAsset(assetID: "xxx")
@@ -45,7 +45,7 @@ class AllocationValidationTests: XCTestCase {
             }
         }
     }
-    
+
     func testInvalidAssetFails() throws {
         for isNew in [true, false] {
             let strategy = MStrategy(strategyID: "1")
@@ -57,7 +57,7 @@ class AllocationValidationTests: XCTestCase {
             }
         }
     }
-    
+
     func testInvalidTargetPercentFails() throws {
         for targetPct in [-1.000, -0.001, 1.001, 2.000] {
             let expected = "'\(targetPct.format3())' is not a valid target percent for allocation."

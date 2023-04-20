@@ -12,10 +12,9 @@ import Foundation
 
 import AllocData
 
-extension MTransaction.Action {
-    
+public extension MTransaction.Action {
     /// NOTE not using CustomStringConvertible and description, because that screws with encoding.
-    public var displayDescription: String {
+    var displayDescription: String {
         switch self {
         case .buysell:
             return "Buy/Sell"

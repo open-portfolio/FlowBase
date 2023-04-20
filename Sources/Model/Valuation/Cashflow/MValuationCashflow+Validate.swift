@@ -12,31 +12,28 @@ import Foundation
 
 import AllocData
 
-
-extension MValuationCashflow.Key {
+public extension MValuationCashflow.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.accountNormID != "" && self.assetNormID != ""
+    var isValid: Bool {
+        accountNormID != "" && assetNormID != ""
     }
 }
 
 extension MValuationCashflow: BaseValidator {
-    public func validate(epsilon: Double = 0.0001) throws {
-        
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for cash flow: [\(primaryKey)].")
         }
     }
 
     public func validate(against model: BaseModel, isNew: Bool) throws {
-        
         if isNew {
             guard !model.containsKey(primaryKey, keyPath: \.valuationCashflows)
             else {
                 throw FlowBaseError.validationFailure("Conflicting cash flow '\(accountID)' and '\(assetID)'.")
             }
         }
-        
+
         try model.validate(for: accountKey)
         try model.validate(for: assetKey)
     }

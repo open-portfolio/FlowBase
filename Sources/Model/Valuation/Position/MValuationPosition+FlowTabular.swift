@@ -12,7 +12,6 @@ import Foundation
 
 import AllocData
 
-
 extension MValuationPosition: FlowTabular {
     public var snapshotKey: MValuationSnapshot.Key {
         MValuationSnapshot.Key(snapshotID: snapshotID)
@@ -29,7 +28,7 @@ extension MValuationPosition: FlowTabular {
     public func fkCreate(model: inout BaseModel) throws {
         if snapshotKey.isValid {
             // attempt to find existing record for valuation snapshot, if any specified, creating if needed
-            _ = try model.importMinimal(MValuationSnapshot(snapshotID: snapshotID, capturedAt: Date.init(timeIntervalSinceReferenceDate: 0)), into: \.valuationSnapshots)
+            _ = try model.importMinimal(MValuationSnapshot(snapshotID: snapshotID, capturedAt: Date(timeIntervalSinceReferenceDate: 0)), into: \.valuationSnapshots)
         }
         if accountKey.isValid {
             // attempt to find existing record for account, if any specified, creating if needed

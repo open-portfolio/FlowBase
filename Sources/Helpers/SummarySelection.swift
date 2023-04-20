@@ -15,4 +15,3 @@ public enum SummarySelection: Int, CaseIterable, Codable {
     case gainLossAmount
     case gainLossPercent
 }
-

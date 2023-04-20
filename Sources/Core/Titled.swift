@@ -31,10 +31,10 @@ extension Titled {
 }
 
 extension BaseModel {
-    
     /// return true if a non-blank normalized title is present in the model
     func hasConflictingTitle<T>(_ element: T, keyPath: AllocBaseKeyPath<T>) -> Bool
-    where T: AllocKeyed & Titled {
+        where T: AllocKeyed & Titled
+    {
         let _normTitle = element.normTitle
         guard _normTitle.count > 0 else { return false } // conflicting blanks are fine
         let records = self[keyPath: keyPath]

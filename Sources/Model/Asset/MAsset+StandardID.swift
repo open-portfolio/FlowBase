@@ -14,7 +14,6 @@ import AllocData
 import FINporter
 
 public extension MAsset.StandardID {
-        
     static var standardAssets: [MAsset] {
         MAsset.StandardID.allCases.map {
             MAsset(assetID: $0.rawValue,
@@ -24,7 +23,7 @@ public extension MAsset.StandardID {
         }
     }
 
-    // TODO currently US-centric
+    // TODO: currently US-centric
     var assetIdDescription: String {
         switch self {
         case .bond:
@@ -101,7 +100,7 @@ public extension MAsset.StandardID {
             return "Total Market"
         }
     }
-    
+
     var defaultParentID: MAsset.StandardID? {
         switch self {
         case .corpbond:
@@ -160,7 +159,7 @@ public extension MAsset.StandardID {
             return nil
         }
     }
-    
+
     var defaultColorCode: Int {
         switch self {
         case .bond:

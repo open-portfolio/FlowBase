@@ -60,4 +60,3 @@ extension MHolding: HPositionKeyed {
         HPositionKey(accountID: accountID, securityID: securityID, lotID: lotID)
     }
 }
-

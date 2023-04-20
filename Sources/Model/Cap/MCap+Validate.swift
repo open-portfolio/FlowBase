@@ -12,20 +12,19 @@ import Foundation
 
 import AllocData
 
-extension MCap.Key {
+public extension MCap.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.accountNormID != "" && self.assetNormID != ""
+    var isValid: Bool {
+        accountNormID != "" && assetNormID != ""
     }
 }
 
 extension MCap: BaseValidator {
-    
     public var isLimitPctValid: Bool {
         (0.0 ... 1.0).contains(limitPct)
     }
-    
-    public func validate(epsilon: Double = 0.0001) throws {
+
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for cap: [\(primaryKey)].")
         }

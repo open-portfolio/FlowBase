@@ -12,16 +12,15 @@ import Foundation
 
 import AllocData
 
-
-extension MStrategy.Key {
+public extension MStrategy.Key {
     /// return true if the required components of the key are non-blank
-    public var isValid: Bool {
-        self.strategyNormID != ""
+    var isValid: Bool {
+        strategyNormID != ""
     }
 }
 
-extension BaseModel {
-    public func validate(for key: StrategyKey) throws {
+public extension BaseModel {
+    func validate(for key: StrategyKey) throws {
         guard key.isValid
         else {
             throw FlowBaseError.validationFailure("'\(key.strategyNormID)' is not a valid strategy key.")
@@ -34,8 +33,7 @@ extension BaseModel {
 }
 
 extension MStrategy: BaseValidator {
-    public func validate(epsilon: Double = 0.0001) throws {
-
+    public func validate(epsilon _: Double = 0.0001) throws {
         guard primaryKey.isValid else {
             throw FlowBaseError.validationFailure("Invalid primary key for strategy: [\(primaryKey)].")
         }
@@ -56,12 +54,10 @@ extension MStrategy: BaseValidator {
     }
 }
 
-extension MStrategy {
-    
+public extension MStrategy {
     // validation of allocations and holdings of a strategy
-    public func validateDeep(against ax: BaseContext) throws {
-        
-        let strategyKey = self.primaryKey
+    func validateDeep(against ax: BaseContext) throws {
+        let strategyKey = primaryKey
         let allocations = ax.model.allocations.filter { $0.strategyKey == strategyKey }
         let assetMap = ax.assetMap
         for allocation in allocations {
@@ -71,7 +67,7 @@ extension MStrategy {
                 throw FlowBaseError.validationFailure("'\(allocation.assetID)' is not a valid asset class. Check your allocations for strategy.")
             }
         }
-        
+
         // in case the allocations don't add up to 100%
         let allocs = AssetValue.getAssetValues(allocations: allocations)
         try AssetValue.validateAllocs(allocs)

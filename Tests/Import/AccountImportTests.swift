@@ -75,18 +75,18 @@ class AccountImportTests: XCTestCase {
         _ = try encoder.encode(headers: AllocAttribute.getHeaders(MAccount.attributes))
         let data: Data = try encoder.encode(rows: toImport)
 
-        //var rejectedRows = [AllocRowed.DecodedRow]()
+        // var rejectedRows = [AllocRowed.DecodedRow]()
         let url = URL(fileURLWithPath: "hello.csv")
-        _ = try model.detectDecodeImport(data: data, url: url) //, purchasesOnly: false)  //, rejectedRows: &rejectedRows
+        _ = try model.detectDecodeImport(data: data, url: url) // , purchasesOnly: false)  //, rejectedRows: &rejectedRows
 
         let accountB = MAccount(accountID: "2", title: "B")
         let accountC = MAccount(accountID: "3", title: "C")
         let expected = [accountA, accountB, accountC]
         XCTAssertEqual(expected, model.accounts)
     }
-    
+
     func testForeignKeyToStrategyTableCreated() throws {
-        //let asset = MAsset(assetID: "A", title: "A")
+        // let asset = MAsset(assetID: "A", title: "A")
         // let strategy = MStrategy(strategyID: "1", title: "60/40")
         var model = BaseModel(strategies: [])
         XCTAssertEqual(0, model.strategies.count)

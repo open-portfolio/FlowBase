@@ -19,15 +19,13 @@ extension MCap: Comparable {
 }
 
 extension MCap.Key: Comparable {
-    
     public static func < (lhs: MCap.Key, rhs: MCap.Key) -> Bool {
         if lhs.accountNormID < rhs.accountNormID { return true }
         if lhs.accountNormID > rhs.accountNormID { return false }
 
         if lhs.assetNormID < rhs.assetNormID { return true }
         if lhs.assetNormID > rhs.assetNormID { return false }
-        
+
         return false
     }
-
 }

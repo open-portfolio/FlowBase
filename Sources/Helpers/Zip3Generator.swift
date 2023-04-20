@@ -13,12 +13,11 @@ import Foundation
 // zip - via https://gist.github.com/JRHeaton/ff5addcd72f221dd57ad
 
 public struct Zip3Generator
-    <
+<
     A: IteratorProtocol,
     B: IteratorProtocol,
     C: IteratorProtocol
 >: IteratorProtocol {
-
     private var first: A
     private var second: B
     private var third: C
@@ -32,7 +31,7 @@ public struct Zip3Generator
     }
 
     // swiftlint:disable large_tuple
-    mutating public func next() -> (A.Element, B.Element, C.Element)? {
+    public mutating func next() -> (A.Element, B.Element, C.Element)? {
         if let first = first.next(), let second = second.next(), let third = third.next() {
             return (first, second, third)
         }
