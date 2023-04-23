@@ -69,9 +69,9 @@ extension MSecurity: BaseValidator {
         if assetKey.isValid {
             try model.validate(for: assetKey)
         }
-        if trackerKey.isValid {
-            try model.validate(for: trackerKey)
-        }
+//        if trackerKey.isValid {
+//            try model.validate(for: trackerKey)
+//        }
     }
 }
 

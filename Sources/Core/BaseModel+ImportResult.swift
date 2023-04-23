@@ -121,7 +121,7 @@ public extension BaseModel {
             FidoHistory(),
             FidoPositions(),
             FidoSales(),
-           // ChuckPositionsAll(),
+            // ChuckPositionsAll(),
             ChuckPositionsIndiv(),
             ChuckHistory(),
             ChuckSales(),

@@ -32,7 +32,7 @@ public extension AllocSchema {
         case .allocCap:
             return "caps"
         case .allocTracker:
-            return "trackers"
+            return "trackers" // note: not used at present
         case .allocRebalanceSale:
             return "rebalanceSales"
         case .allocRebalancePurchase:

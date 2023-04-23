@@ -85,18 +85,18 @@ public extension BaseModel {
         strategies.removeAll(where: { $0.primaryKey == pk })
     }
 
-    mutating func delete(_ index: MTracker) {
-        let pk = index.primaryKey
-        delete(pk)
-    }
+//    mutating func delete(_ index: MTracker) {
+//        let pk = index.primaryKey
+//        delete(pk)
+//    }
 
-    mutating func delete(_ pk: MTracker.ID) {
-        for n in 0 ..< securities.count {
-            guard securities[n].trackerKey == pk else { continue }
-            securities[n].trackerID = ""
-        }
-        trackers.removeAll(where: { $0.primaryKey == pk })
-    }
+//    mutating func delete(_ pk: MTracker.ID) {
+//        for n in 0 ..< securities.count {
+//            guard securities[n].trackerKey == pk else { continue }
+//            securities[n].trackerID = ""
+//        }
+//        trackers.removeAll(where: { $0.primaryKey == pk })
+//    }
 
     mutating func delete(_ cap: MCap) {
         let pk = cap.primaryKey

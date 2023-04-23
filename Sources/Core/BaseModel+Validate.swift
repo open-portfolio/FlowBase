@@ -36,10 +36,10 @@ public extension BaseModel {
             try $0.validate(against: self, isNew: false)
             try $0.validate()
         }
-        try trackers.forEach {
-            try $0.validate(against: self, isNew: false)
-            try $0.validate()
-        }
+//        try trackers.forEach {
+//            try $0.validate(against: self, isNew: false)
+//            try $0.validate()
+//        }
         try caps.forEach {
             try $0.validate(against: self, isNew: false)
             try $0.validate()

@@ -35,7 +35,7 @@ open class BaseContext {
 
     public lazy var strategyMap: StrategyMap = model.makeStrategyMap()
 
-    public lazy var trackerMap: TrackerMap = model.makeTrackerMap()
+//    public lazy var trackerMap: TrackerMap = model.makeTrackerMap()
 
     public lazy var accountHoldingsMap: AccountHoldingsMap = model.makeAccountHoldingsMap()
 

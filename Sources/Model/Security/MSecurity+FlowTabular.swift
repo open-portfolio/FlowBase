@@ -17,18 +17,18 @@ extension MSecurity: FlowTabular {
         MAsset.Key(assetID: assetID)
     }
 
-    public var trackerKey: MTracker.Key {
-        MTracker.Key(trackerID: trackerID)
-    }
+//    public var trackerKey: MTracker.Key {
+//        MTracker.Key(trackerID: trackerID)
+//    }
 
     public func fkCreate(model: inout BaseModel) throws {
         if assetKey.isValid {
             // attempt to find existing record for account, if any specified, creating if needed
             _ = try model.importMinimal(MAsset(assetID: assetID), into: \.assets)
         }
-        if trackerKey.isValid {
-            // attempt to find existing record for tracker, if any specified, creating if needed
-            _ = try model.importMinimal(MTracker(trackerID: trackerID), into: \.trackers)
-        }
+//        if trackerKey.isValid {
+//            // attempt to find existing record for tracker, if any specified, creating if needed
+//            _ = try model.importMinimal(MTracker(trackerID: trackerID), into: \.trackers)
+//        }
     }
 }

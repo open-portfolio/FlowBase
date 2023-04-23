@@ -27,13 +27,13 @@ class BaseModelDeleteTests: XCTestCase {
         XCTAssertEqual("", model.accounts.first?.strategyID)
     }
 
-    func testInvalidateSecuritysFKonTrackerDelete() throws {
-        let tracker = MTracker(trackerID: "1")
-        let security = MSecurity(securityID: "2", trackerID: "1")
-        var model = BaseModel(securities: [security], trackers: [tracker])
-        model.delete(tracker)
-        XCTAssertEqual("", model.securities.first?.trackerID)
-    }
+//    func testInvalidateSecuritysFKonTrackerDelete() throws {
+//        let tracker = MTracker(trackerID: "1")
+//        let security = MSecurity(securityID: "2", trackerID: "1")
+//        var model = BaseModel(securities: [security], trackers: [tracker])
+//        model.delete(tracker)
+//        XCTAssertEqual("", model.securities.first?.trackerID)
+//    }
 
     func testInvalidateParentAssetFK() throws {
         let parent = MAsset(assetID: "1")

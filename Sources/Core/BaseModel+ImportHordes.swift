@@ -60,11 +60,11 @@ public extension BaseModel {
             try items.forEach {
                 _ = try importRow($0, into: \.strategies)
             }
-        case .allocTracker:
-            let items: [AllocRowed.DecodedRow] = try finPorter.decode(MTracker.self, data, rejectedRows: &rejectedRows, inputFormat: finFormat, outputSchema: schema, url: url, defTimeOfDay: defTimeOfDay, timeZone: timeZone)
-            try items.forEach {
-                _ = try importRow($0, into: \.trackers)
-            }
+//        case .allocTracker:
+//            let items: [AllocRowed.DecodedRow] = try finPorter.decode(MTracker.self, data, rejectedRows: &rejectedRows, inputFormat: finFormat, outputSchema: schema, url: url, defTimeOfDay: defTimeOfDay, timeZone: timeZone)
+//            try items.forEach {
+//                _ = try importRow($0, into: \.trackers)
+//            }
         case .allocCap:
             let items: [AllocRowed.DecodedRow] = try finPorter.decode(MCap.self, data, rejectedRows: &rejectedRows, inputFormat: finFormat, outputSchema: schema, url: url, defTimeOfDay: defTimeOfDay, timeZone: timeZone)
             try items.forEach {

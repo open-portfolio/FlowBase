@@ -22,7 +22,7 @@ public struct BaseModel: Identifiable, Codable {
     public var assets: [MAsset]
     public var securities: [MSecurity]
     public var holdings: [MHolding]
-    public var trackers: [MTracker]
+//    public var trackers: [MTracker]
     public var caps: [MCap]
     public var transactions: [MTransaction]
     public var valuationSnapshots: [MValuationSnapshot]
@@ -38,7 +38,7 @@ public struct BaseModel: Identifiable, Codable {
         case assets
         case securities
         case holdings
-        case trackers
+//        case trackers
         case caps
         case transactions
         case valuationSnapshots
@@ -54,7 +54,7 @@ public struct BaseModel: Identifiable, Codable {
                 assets: [MAsset] = [],
                 securities: [MSecurity] = [],
                 holdings: [MHolding] = [],
-                trackers: [MTracker] = [],
+//                trackers: [MTracker] = [],
                 caps: [MCap] = [],
                 transactions: [MTransaction] = [],
                 valuationSnapshots: [MValuationSnapshot] = [],
@@ -70,7 +70,7 @@ public struct BaseModel: Identifiable, Codable {
         self.assets = assets
         self.securities = securities
         self.holdings = holdings
-        self.trackers = trackers
+//        self.trackers = trackers
         self.caps = caps
         self.transactions = transactions
         self.valuationSnapshots = valuationSnapshots

@@ -17,7 +17,7 @@ public enum FlowBaseError: Error, Equatable, CustomStringConvertible {
     case unrecognizedStrategy(_ strategyID: String)
     case unrecognizedAccount(_ accountID: String)
     case unrecognizedTicker(_ securityID: String, _ msg: String = "")
-    case unrecognizedTracker(_ trackerID: String)
+//    case unrecognizedTracker(_ trackerID: String)
     case unrecognizedSchema(_ schema: String)
     case invalidPrimaryKey(_ msg: String)
     case decodingError(_ msg: String)
@@ -44,8 +44,8 @@ public enum FlowBaseError: Error, Equatable, CustomStringConvertible {
             return String("Accounts does not contain '\(accountID)'.")
         case let .unrecognizedTicker(securityID, msg):
             return String("Securities does not contain '\(securityID)'. \(msg)")
-        case let .unrecognizedTracker(trackerID):
-            return String("Trackers does not contain '\(trackerID)'.")
+//        case let .unrecognizedTracker(trackerID):
+//            return String("Trackers does not contain '\(trackerID)'.")
         case let .unrecognizedSchema(schema):
             return String("'\(schema)' not a recognized schema.")
         case let .invalidPrimaryKey(msg):

@@ -32,8 +32,8 @@ public extension BaseModel {
             return try exportData(holdings, format: format)
         case .allocCap:
             return try exportData(caps, format: format)
-        case .allocTracker:
-            return try exportData(trackers, format: format)
+//        case .allocTracker:
+//            return try exportData(trackers, format: format)
         case .allocTransaction:
             return try exportData(transactions, format: format)
         case .allocValuationSnapshot:

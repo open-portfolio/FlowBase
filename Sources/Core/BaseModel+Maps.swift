@@ -31,9 +31,9 @@ public extension BaseModel {
         assets.map(\.primaryKey)
     }
 
-    var trackerKeys: [TrackerKey] {
-        trackers.map(\.primaryKey)
-    }
+//    var trackerKeys: [TrackerKey] {
+//        trackers.map(\.primaryKey)
+//    }
 
     // MARK: - Keyed Maps
 
@@ -53,9 +53,9 @@ public extension BaseModel {
         MAsset.makeAllocMap(assets)
     }
 
-    func makeTrackerMap() -> TrackerMap {
-        MTracker.makeAllocMap(trackers)
-    }
+//    func makeTrackerMap() -> TrackerMap {
+//        MTracker.makeAllocMap(trackers)
+//    }
 
     func makeSnapshotMap() -> SnapshotMap {
         MValuationSnapshot.makeAllocMap(valuationSnapshots)

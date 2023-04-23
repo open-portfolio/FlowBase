@@ -8,28 +8,28 @@
 // file, You can obtain one at https://mozilla.org/MPL/2.0/.
 //
 
-import Foundation
+// import Foundation
+//
+// import AllocData
 
-import AllocData
-
-extension MTracker: Comparable {
-    public static func < (lhs: MTracker, rhs: MTracker) -> Bool {
-        lhs._title < rhs._title ||
-            (lhs.title == rhs.title && lhs.trackerID < rhs.trackerID)
-    }
-
-    private var _title: String {
-        title ?? ""
-    }
-}
-
-extension MTracker.Key: Comparable {
-    public static func < (lhs: MTracker.Key, rhs: MTracker.Key) -> Bool {
-        if lhs.trackerNormID < rhs.trackerNormID { return true }
-        if lhs.trackerNormID > rhs.trackerNormID { return false }
-        return false
-    }
-}
+// extension MTracker: Comparable {
+//    public static func < (lhs: MTracker, rhs: MTracker) -> Bool {
+//        lhs._title < rhs._title ||
+//            (lhs.title == rhs.title && lhs.trackerID < rhs.trackerID)
+//    }
+//
+//    private var _title: String {
+//        title ?? ""
+//    }
+// }
+//
+// extension MTracker.Key: Comparable {
+//    public static func < (lhs: MTracker.Key, rhs: MTracker.Key) -> Bool {
+//        if lhs.trackerNormID < rhs.trackerNormID { return true }
+//        if lhs.trackerNormID > rhs.trackerNormID { return false }
+//        return false
+//    }
+// }
 
 // extension BaseModel {
 //

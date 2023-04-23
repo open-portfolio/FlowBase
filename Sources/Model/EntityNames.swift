@@ -65,11 +65,11 @@ extension MStrategy: EntityNamed {
     }
 }
 
-extension MTracker: EntityNamed {
-    public static var entityName: Tuple {
-        Tuple(singular: "index tracker", plural: "index trackers")
-    }
-}
+// extension MTracker: EntityNamed {
+//    public static var entityName: Tuple {
+//        Tuple(singular: "index tracker", plural: "index trackers")
+//    }
+// }
 
 extension MValuationSnapshot: EntityNamed {
     public static var entityName: Tuple {
